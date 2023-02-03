@@ -9,7 +9,9 @@ namespace PE4_Question6
     /// <summary>
     /// This class generates Mandelbrot sets in the console window!
     /// </summary>
-
+    //PE4 Q6
+    //Josh Samuel
+    //Restriciton: none
 
     class Class1
     {
@@ -25,25 +27,31 @@ namespace PE4_Question6
         [STAThread]
         static void Main(string[] args)
         {
-            double startingPoint = -1.2;
-            double endingPoint = 1.2;
+            //set these variables to make while loop keep going until it a conditon stops
+            double imagstartingPoint = -1.2;
+            double imagendingPoint = 1.2;
 
-            while(startingPoint < endingPoint)
+            //While loop if user puts invalid values
+            while(imagstartingPoint < imagendingPoint)
             {
+                //Ask user to input imaginary starting and ending point
                 Console.Write("Enter the value for Imaginary starting point (1.2): ");
-                startingPoint = double.Parse(Console.ReadLine());
+                imagstartingPoint = double.Parse(Console.ReadLine());
 
                 Console.Write("Enter the value for Imaginary ending point (-1.2): ");
-                endingPoint = double.Parse(Console.ReadLine());
+                imagendingPoint = double.Parse(Console.ReadLine());
             }
 
-            double imagIncre = (startingPoint - endingPoint) / 48.0;
+            double imagIncre = (imagstartingPoint - imagendingPoint) / 48.0;
 
+            //set these variables to make while loop keep going until it a conditon stops
             double realStartingPoint = 1.77;
             double realEndingPoint = -0.6;
 
-            while(realStartingPoint > realEndingPoint)
+            //While loop if user puts invalid values
+            while (realStartingPoint > realEndingPoint)
             {
+                //Ask user to input real starting and ending point
                 Console.Write("Enter the value for Real starting point (-0.6): ");
                 realStartingPoint = double.Parse(Console.ReadLine());
 
@@ -57,7 +65,7 @@ namespace PE4_Question6
             double realCoord, imagCoord;
             double realTemp, imagTemp, realTemp2, arg;
             int iterations;
-            for (imagCoord = startingPoint; imagCoord >= endingPoint; imagCoord -= imagIncre)
+            for (imagCoord = imagstartingPoint; imagCoord >= imagendingPoint; imagCoord -= imagIncre)
             {
                 for (realCoord = realStartingPoint; realCoord <= realEndingPoint; realCoord += realIncre)
                 {
