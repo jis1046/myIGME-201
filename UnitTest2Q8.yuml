@@ -1,0 +1,20 @@
+// {type:class}
+// {generate:true}
+// {direction:topDown}
+
+[+BasketballPlayer|-playerName:string;-playerNumber:int|+PlayerName:string;+PlayerNumber:int;+Play():a;+notPlay():a;+run():v;]
+
+[+I:Offense|turnover();shoot();pass();dribble();rebound();dunk();screen();]
+
+[+I:Defense|steal();block();rebound();]
+
+[+Guard|trunover();shoot();pass();dribble();steal();block();rebound();crossOver();betweenLegs();behindBack();drive();dunk();screen();play():o;notPlay():o;run():0;]
+
+[+BasketballPlayer]<-[+Guard]
+[+I:Offense]^[+Guard]
+[+I:Defense]^[+Guard]
+
+[+Big|turnover();shoot();pass();dribble();steal();block();rebound();post();hook();dunk();screen();play():o;notPlay():o;run():0;]
+[+BasketballPlayer]<-[+Big]
+[+I:Offense]^[+Big]
+[+I:Defense]^[+Big]
