@@ -38,6 +38,12 @@ namespace UnitTest2Q9
                 Big bigMan = new Big();
                 bigMan.shoot();
             }
+
+            else if (obj is Guard) 
+            { 
+                Guard pointGuard = new Guard();
+                pointGuard.shoot();
+            }
         }
 
 

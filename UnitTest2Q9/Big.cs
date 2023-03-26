@@ -15,7 +15,7 @@ namespace UnitTest2Q9
 
         public void shoot()
         {            
-           Console.WriteLine("Make a 2 point midrange");
+           Console.WriteLine("Big makes a 2 point midrange");
         }
 
         public void pass()

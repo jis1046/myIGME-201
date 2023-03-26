@@ -15,7 +15,7 @@ namespace UnitTest2Q9
 
         public void shoot()
         {
-           Console.WriteLine("Make a 3 pointer");
+           Console.WriteLine("Guard makea a 3 pointer");
         }
 
         public  void pass()

@@ -17,7 +17,7 @@ namespace UnitTest2Q9
 
             bigMan.myMethod(bigMan);
 
-            pointGuard.shoot();
+            pointGuard.myMethod(pointGuard);
             
 
             
