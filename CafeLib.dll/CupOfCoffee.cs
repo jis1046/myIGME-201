@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CafeLib.dll
 {
-    public class CupOfCoffee: HotDrink
+    public class CupOfCoffee: HotDrink, ITakeOrder
     {
         string beanType;
 
