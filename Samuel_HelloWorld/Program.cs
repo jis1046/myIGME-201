@@ -21,7 +21,7 @@ namespace Samuel_HelloWorld
             int myInteger = 500;
             double myDouble = 5.5;
 
-            Console.WriteLine("Josh Samuel ");
+            Console.WrieLine("Josh Samuel ");
             Console.WriteLine(myInteger - myDouble);
           
             //If Statment 
