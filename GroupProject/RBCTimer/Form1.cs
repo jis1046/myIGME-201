@@ -13,10 +13,10 @@ namespace RBCTimer
 {
 
 
-    public partial class Form1 : Form
+    public partial class RBCTimer : Form
     {
         TimeSpan timerValue = TimeSpan.Zero;
-        public Form1()
+        public RBCTimer()
         {
             InitializeComponent();
 

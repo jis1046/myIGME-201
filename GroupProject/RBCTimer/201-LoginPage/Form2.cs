@@ -8,23 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InfoPage
+namespace _201_LoginPage
 {
-    public partial class InfoPage : Form
+    public partial class Form2 : Form
     {
-        public InfoPage()
+        public Form2()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void startButton_Click(object sender, EventArgs e)
-        {
-            
         }
     }
 }
