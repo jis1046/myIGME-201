@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Activation;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -10,54 +11,85 @@ namespace FinalExamQ6
 {
     internal class Program
     {
-        public class PlayerSetting
+        public class SingletonClass
         {
-            public PlayerSetting() { }
+            private static SingletonClass instance = new SingletonClass();
 
-            string name;
-            int level;
-            int hp;
-            List<string> inventory;
-            string licenseKey;
+            private SingletonClass() { }
 
-            public void saveFile(string fileName) 
+            public static SingletonClass getInstance() 
+            { 
+                return instance;
+            }
+
+            public PlayerSettings Load()
             {
-                using (StreamWriter file = File.CreateText(fileName))
+
+                string filePath = "player_settings.json";
+                if(File.Exists(filePath))
                 {
-                    JsonSerializer serializer = new JsonSerializer();
-                    serializer.Serialize(file, this);
+                    string json = File.ReadAllText(filePath);
+                    return JsonConvert.DeserializeObject<PlayerSettings>(json);
+                }
+
+                else
+                {
+                    Console.WriteLine("File not found: " + filePath);
+                    return null;
                 }
             }
 
-            public void loadFile(string fileName) 
+            public void Save(PlayerSettings playerSettings) 
             {
-                using (StreamReader file = File.OpenText(fileName))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    PlayerSetting loadPlayerSetting = new PlayerSetting();
-
-                    this.name = loadPlayerSetting.name;
-                    this.level = loadPlayerSetting.level;
-                    this.hp = loadPlayerSetting.hp;
-                    this.inventory = loadPlayerSetting.inventory;
-                    this.licenseKey = loadPlayerSetting.licenseKey;
-                }
+                string filePath = "player_settings.json";
+                string json = JsonConvert.SerializeObject(playerSettings);
+                File.WriteAllText(filePath, json);
             }
+        }
 
-            public void clear()
-            {
-                this.name=null;
-                this.level=0;
-                this.hp=0;
-                this.inventory=null;
-                this.licenseKey=null;
-            }
-
+        public class PlayerSettings
+        {
+            public string name;
+            public int level;
+            public int hp;
+            public List<string> inventory;
+            public string licenseKey;
         }
         static void Main(string[] args)
         {
+            SingletonClass singleton = SingletonClass.getInstance(); 
 
-            playerSetting.name = "";
+            PlayerSettings playerSettings = singleton.Load();
+
+            if(playerSettings != null)
+            {
+                Console.WriteLine("Loaded player settings:");
+                Console.WriteLine("Player Name: " + playerSettings.name);
+                Console.WriteLine("Level: " + playerSettings.level);
+                Console.WriteLine("HP: " + playerSettings.hp);
+                Console.WriteLine("Inventory: " + string.Join(",", playerSettings.inventory));
+                Console.WriteLine("License Key: " + playerSettings.licenseKey);
+                Console.WriteLine();
+            }
+
+            playerSettings = new PlayerSettings
+            {
+                name = "dschuh",
+                level = 4,
+                hp = 99,
+                inventory = new List<string> { "spear", "water bottle", "hammer", "sonic screwdriver", "cannonball", "wood", "Scooby snack", "Hydra", "poisonous potato", "dead bush", "repair powder" },
+                licenseKey = "DFGU99-1454"
+            };
+
+            singleton.Save(playerSettings);
+
+            Console.WriteLine("Saved player settings:");
+            Console.WriteLine("Player Name: " + playerSettings.name);
+            Console.WriteLine("Level: " + playerSettings.level);
+            Console.WriteLine("HP: " + playerSettings.hp);
+            Console.WriteLine("Inventory: " + string.Join(",", playerSettings.inventory));
+            Console.WriteLine("License Key: " + playerSettings.licenseKey);
+
 
         }
     }
